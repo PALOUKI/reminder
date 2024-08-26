@@ -43,14 +43,15 @@
                 //SI LE FICHIER A BIEN ETE DEPLACER DANS LE FICHIER UPLOADS JE FAIS LA REQUETTE d4INSERTION DANS LA BASE DE DONNEE
                 if($moveFile){
                     // INSERER L'IMAGE
-                    $imageQuery='INSERT INTO images(image) VALUES(:image)';
+                    $imageQuery='INSERT INTO images(image, user_id) VALUES(:image, :user_id)';
                     $imagesStatement=$mysqlClient->prepare($imageQuery);
                  $retourImage=   $imagesStatement->execute([
-                        ":image"=> $file['name']
+                        ":image"=> $file['name'],
+                        ":user_id"=> $_SESSION["loggedUser"]["user_id"]
                  ]);
                     //INSERER le titre, la description, la date, l'importance, le statut de l'évènement
-                    $reminderQuery='INSERT INTO reminders(title, event, date, importance, statut)
-                                    VALUES (:title, :event, :date, :importance, :statut)';
+                    $reminderQuery='INSERT INTO reminders(title, event, date, importance, statut, user_id)
+                                    VALUES (:title, :event, :date, :importance, :statut, :user_id)';
                     $remindersStatement=$mysqlClient->prepare($reminderQuery);
                     $retourReminder=   $remindersStatement->execute([
                         
@@ -59,6 +60,7 @@
                         ":date"=> $postData['date'],
                         ":importance"=> $postData['importance'],
                         ":statut"=> $postData['statut'],
+                        ":user_id"=> $_SESSION["loggedUser"]["user_id"]
                  ]);
 
 

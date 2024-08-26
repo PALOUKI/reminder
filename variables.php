@@ -43,16 +43,22 @@
     $usersStatment->execute();
     $users=$usersStatment->fetchAll();
 
-    $sql= 'SELECT * FROM reminders';
+    $sql= 'SELECT * FROM reminders WHERE user_id=?';
     $remindersStatment=$mysqlClient->prepare($sql);
-    $remindersStatment->execute();
+    $remindersStatment->execute(
+        [
+            $_SESSION["loggedUser"]["user_id"]
+        ]
+    );
     $reminders=$remindersStatment->fetchAll();
 
 
 
-    $showImagesql= 'SELECT * FROM images';
+    $showImagesql= 'SELECT * FROM images WHERE user_id=?';
     $showImagesStatment=$mysqlClient->prepare($showImagesql);
-    $showImagesStatment->execute();
+    $showImagesStatment->execute([
+        $_SESSION["loggedUser"]["user_id"]
+    ]);
     $images=$showImagesStatment->fetchAll();
   
     
