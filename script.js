@@ -17,6 +17,5 @@ function closeLoginForm(item){
     }) 
 }
 
-
 OpenLoginForm(loginBtn);
 closeLoginForm(closeSvg);
