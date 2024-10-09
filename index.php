@@ -1,8 +1,5 @@
 <?php 
    session_start();
-   
-
-   
    require_once('variables.php');
 ?>
 
@@ -21,24 +18,12 @@
    <?php require_once('includes/header.php'); ?>
       
    <?php require_once('users/login.php'); ?>
-   <?php //require_once('users/signUp.php'); ?>
 
    <?php if (isset($_SESSION['loggedUser'])) : ?>
       <?php require_once('includes/drawerComponent.php'); ?>
 
             <!--Ajouter dynamiquement des reminders -->
       <div class="">
-         
-         <?php //require_once('uploads/submitDrawerComponent.php'); ?>
-
-
-         <?php //foreach($images as $image): ?>
-            <!-- <img src="<?php// echo "uploads/".$image['image']; ?>"  alt=""> -->
-         <?php //endforeach; ?>
-
-
-
-
          <?php  require_once("home/connectContenuAcceuil.php"); ?>
       </div>
    <?php endif; ?>   
